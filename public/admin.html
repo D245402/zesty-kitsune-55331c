@@ -4,92 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmaciones - Boda</title>
-    <style>
-        body {
-            font-family: 'Georgia', serif;
-            background-color: #f8f4f0;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            max-width: 1000px;
-            width: 100%;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #b76e79;
-            text-align: center;
-            margin-top: 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th {
-            background-color: #b76e79;
-            color: white;
-            padding: 10px;
-            text-align: left;
-        }
-        td {
-            padding: 8px 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #b76e79;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-        .btn:hover {
-            background-color: #a55a65;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/estilos.css">
 </head>
 <body>
     <div class="container">
         <h1>Confirmaciones de asistencia</h1>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Asistencia</th>
-                <th>Acompañantes</th>
-                <th>Fecha</th>
-            </tr>
-            {% for conf in confirmaciones %}
-            <tr>
-                <td>{{ conf[0] }}</td>
-                <td>{{ conf[1] }}</td>
-                <td>
-                    {% if conf[2] == 'si' %}
-                        ✅ Sí
-                    {% else %}
-                        ❌ No
-                    {% endif %}
-                </td>
-                <td>{{ conf[3] }}</td>
-                <td>{{ conf[4] }}</td>
-            </tr>
-            {% endfor %}
+        <div id="loading" class="loading">Cargando confirmaciones...</div>
+        <table id="tabla" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Asistencia</th>
+                    <th>Acompañantes</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
         </table>
         <a href="/" class="btn">← Volver a la invitación</a>
     </div>
+
+    <script>
+        // Función para cargar los datos desde la API
+        fetch('/api/confirmaciones')
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.querySelector('#tabla tbody');
+                const loading = document.getElementById('loading');
+                const tabla = document.getElementById('tabla');
+
+                if (data.length === 0) {
+                    loading.textContent = 'No hay confirmaciones aún.';
+                } else {
+                    loading.style.display = 'none';
+                    tabla.style.display = 'table';
+
+                    data.forEach(conf => {
+                        const row = tbody.insertRow();
+                        row.innerHTML = `
+                            <td>${conf.id}</td>
+                            <td>${conf.nombre}</td>
+                            <td>${conf.asistencia === 'si' ? '✅ Sí' : '❌ No'}</td>
+                            <td>${conf.acompanantes}</td>
+                            <td>${new Date(conf.fecha).toLocaleString()}</td>
+                        `;
+                    });
+                }
+            })
+            .catch(error => {
+                document.getElementById('loading').textContent = 'Error al cargar las confirmaciones.';
+                console.error('Error:', error);
+            });
+    </script>
 </body>
 </html>
