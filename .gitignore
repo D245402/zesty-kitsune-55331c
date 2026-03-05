@@ -1,0 +1,53 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json   # Opcional: si quieres mantener el lock, coméntalo; muchos lo suben.
+
+# Python / Flask (por si aún tienes archivos)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pythonenv*
+
+# Base de datos (NO subir archivos .db si contienen datos reales)
+*.db
+*.sqlite
+*.sqlite3
+
+# Archivos de entorno
+.env
+.venv
+.env.local
+.env.*.local
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / editores
+.vscode/
+*.code-workspace
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+
+# Logs
+logs/
+*.log
+
+# Otros
+.DS_Store
+*.bak

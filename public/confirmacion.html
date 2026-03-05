@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias por confirmar!</title>
+    <link rel="stylesheet" href="/static/estilos.css">
+</head>
+<body>
+    <div class="tarjeta mensaje-exito">
+        <h1 id="mensaje">¡Gracias por confirmar!</h1>
+        <p>Te esperamos el 14 de Abril a las 6:00 PM ❤️</p>
+    </div>
+
+    <script>
+        // Obtener el parámetro 'nombre' de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const nombre = urlParams.get('nombre');
+        if (nombre) {
+            document.getElementById('mensaje').textContent = `¡Gracias por confirmar, ${nombre}!`;
+        }
+    </script>
+</body>
+</html>
