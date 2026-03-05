@@ -3,16 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boda</title>
-    <link rel="stylesheet" href="estilos.css">
+    <title>Boda Marcela & Walter</title>
+    <link rel="stylesheet" href="/static/estilos.css">
 </head>
 <body>
     <div class="tarjeta">
         <h1>Marcela & Walter</h1>
         <p class="frase">Nos Casamos</p>
-        <p>14 de Abril 2026</p>
-        <p>6:00 PM</p>
+        <p>14 de Abril 2026 - 6:00 PM</p>
         <p>Salón Las Flores</p>
+
+        <form action="/confirmar" method="POST">
+            <div class="campo">
+                <label>Nombre completo:</label>
+                <input type="text" name="nombre" required>
+            </div>
+            
+            <div class="campo">
+                <label>¿Asistirás?</label>
+                <select name="asistencia" required>
+                    <option value="si">Sí, ¡no me lo pierdo!</option>
+                    <option value="no">No podré asistir</option>
+                </select>
+            </div>
+            
+            <div class="campo">
+                <label>Acompañantes:</label>
+                <input type="number" name="acompanantes" min="0" value="0">
+            </div>
+            
+            <button type="submit" class="boton-confirmar">Confirmar asistencia</button>
+        </form>
     </div>
 </body>
 </html>
