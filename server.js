@@ -85,6 +85,18 @@ app.get('/admin', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log('Servidor corriendo en http://localhost:3000');
+app.get('/api/confirmaciones', (req, res) => {
+    db.all('SELECT * FROM confirmaciones ORDER BY fecha DESC', [], (err, rows) => {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: err.message });
+        } else {
+            res.json(rows);
+        }
+    });
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Servidor corriendo en puerto ${port}`);
 });
