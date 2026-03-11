@@ -1,189 +1,223 @@
-/* Estilos generales */
+/* ===== RESET TOTAL ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
 body {
-    background-color: #f8f4f0;
-    font-family: 'Georgia', serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding: 10px;
-    box-sizing: border-box;
+  background: #f8f4f0;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow-x: hidden;
+  padding: 16px; /* Espacio alrededor en todos los dispositivos */
 }
 
-/* Tarjeta principal */
+/* ===== DECORACIONES ===== */
+.decoracion, .linea {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.decoracion {
+  border-radius: 50%;
+  background: radial-gradient(circle, #1f7a5a88, transparent 60%);
+  animation: flotar 15s ease-in-out infinite alternate;
+}
+
+.decoracion1 { width: 350px; height: 350px; top: -50px; left: -50px; }
+.decoracion2 { width: 350px; height: 350px; bottom: -50px; right: -50px; }
+.decoracion3 { width: 220px; height: 220px; top: 25%; right: 10px; }
+.decoracion4 { width: 200px; height: 200px; bottom: 25%; left: 10px; }
+.decoracion5 { width: 180px; height: 180px; top: 55%; left: 20%; }
+
+.linea {
+  border: 2px solid #1f7a5a88;
+  border-radius: 50%;
+  animation: flotar 20s ease-in-out infinite alternate-reverse;
+}
+
+.linea1 { width: 500px; height: 500px; top: 2vh; right: 2vw; }
+.linea2 { width: 500px; height: 500px; bottom: 2vh; left: 2vw; }
+.linea3 { width: 350px; height: 350px; top: 35%; left: -50px; }
+.linea4 { width: 280px; height: 280px; bottom: 35%; right: -50px; }
+
+@keyframes flotar {
+  0% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(15px) translateX(10px); }
+  100% { transform: translateY(-15px) translateX(-10px); }
+}
+
+/* ===== TARJETA BASE ===== */
 .tarjeta {
-    background-color: white;
-    padding: 40px;
-    text-align: center;
-    border-radius: 15px;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
-    width: 350px;
-    max-width: 100%;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+  width: 100%;                /* Ocupa todo el ancho disponible */
+  max-width: 480px;           /* Un poco más ancho que antes */
+  position: relative;
+  z-index: 2;
+  padding: 50px 45px;
 }
 
-/* Título */
+.tarjeta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: #1f7a5a;
+  border-radius: 20px 20px 0 0;
+}
+
 h1 {
-    font-size: 32px;
-    color: #b76e79;
-    margin-top: 0;
-    margin-bottom: 10px;
+  font-family: 'Playfair Display', serif;
+  color: #1f7a5a;
+  font-size: 40px;
+  text-align: center;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
 }
 
-/* Frase "Nos Casamos" */
 .frase {
-    font-style: italic;
-    margin-bottom: 20px;
-    color: #555;
-    font-size: 18px;
+  text-align: center;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
 }
 
-/* Párrafos de fecha y lugar */
-.tarjeta p {
-    margin: 8px 0;
-    color: #333;
+.tarjeta p.info {
+  text-align: center;
+  color: #444;
+  margin: 6px 0;
+  font-size: 1rem;
 }
 
-/* Estilos para el formulario de confirmación */
-.tarjeta form {
-    margin-top: 25px;
-    border-top: 1px dashed #b76e79;
-    padding-top: 20px;
-}
-
+/* ===== FORMULARIO ===== */
 .campo {
-    margin-bottom: 15px;
-    text-align: left;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
-.campo label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-    font-size: 14px;
-    font-family: 'Georgia', serif;
+label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #444;
+  font-weight: 400;
 }
 
-.campo input,
-.campo select {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-family: 'Georgia', serif;
-    font-size: 14px;
-    box-sizing: border-box;
-    transition: border 0.3s;
+input, select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  transition: 0.3s;
 }
 
-.campo input:focus,
-.campo select:focus {
-    outline: none;
-    border-color: #b76e79;
-    box-shadow: 0 0 5px rgba(183, 110, 121, 0.3);
+input:focus, select:focus {
+  outline: none;
+  border-color: #1f7a5a;
+  box-shadow: 0 0 5px rgba(31,122,90,0.3);
 }
 
 .boton-confirmar {
-    background-color: #b76e79;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 25px;
-    font-size: 16px;
-    font-family: 'Georgia', serif;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-    transition: background-color 0.3s, transform 0.2s;
+  background: #1f7a5a;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 25px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+  width: 100%;
+  font-weight: 500;
 }
 
 .boton-confirmar:hover {
-    background-color: #a55a65;
-    transform: scale(1.02);
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Mensaje de éxito después de confirmar */
-.mensaje-exito {
-    color: #b76e79;
-    font-size: 18px;
-    margin: 20px 0;
-    padding: 15px;
-    border: 1px solid #b76e79;
-    border-radius: 10px;
-    background-color: #fff9f9;
+/* ===== TARJETA DE CONFIRMACIÓN ===== */
+.tarjeta.mensaje-exito {
+  padding: 40px 45px;
 }
 
-/* Adaptación para móviles */
-@media (max-width: 480px) {
-    .tarjeta {
-        width: 90%;
-        padding: 25px;
-    }
-    
-    h1 {
-        font-size: 28px;
-    }
+/* ===== MEDIA QUERY PARA MÓVILES ===== */
+@media (max-width: 600px) {
+  body {
+    padding: 12px;  /* Un poco menos de padding en móviles */
+  }
+
+  .tarjeta {
+    padding: 30px 20px;
+    max-width: none;        /* Elimina el límite de ancho en móviles */
+    width: 100%;            /* Ocupa todo el ancho menos el padding del body */
+  }
+
+  .tarjeta.mensaje-exito {
+    padding: 25px 20px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .frase {
+    font-size: 1rem;
+  }
+
+  .tarjeta p.info {
+    font-size: 0.95rem;
+  }
+
+  /* Reducimos decoraciones */
+  .decoracion1, .decoracion2 {
+    width: 200px;
+    height: 200px;
+  }
+  .decoracion3, .decoracion4, .decoracion5 {
+    width: 140px;
+    height: 140px;
+  }
+  .linea1, .linea2 {
+    width: 300px;
+    height: 300px;
+  }
+  .linea3, .linea4 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .decoracion1 { top: -30px; left: -30px; }
+  .decoracion2 { bottom: -30px; right: -30px; }
+  .linea3 { left: -70px; }
+  .linea4 { right: -70px; }
 }
 
-
-body {
-            font-family: 'Georgia', serif;
-            background-color: #f8f4f0;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            max-width: 1000px;
-            width: 100%;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #b76e79;
-            text-align: center;
-            margin-top: 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th {
-            background-color: #b76e79;
-            color: white;
-            padding: 10px;
-            text-align: left;
-        }
-        td {
-            padding: 8px 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #b76e79;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-        .btn:hover {
-            background-color: #a55a65;
-        }
-        .loading {
-            text-align: center;
-            padding: 20px;
-            color: #b76e79;
-            font-style: italic;
-        }
+@media (max-width: 380px) {
+  .tarjeta {
+    padding: 25px 15px;
+  }
+  .tarjeta.mensaje-exito {
+    padding: 20px 15px;
+  }
+  h1 {
+    font-size: 28px;
+  }
+}

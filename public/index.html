@@ -1,39 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boda Marcela & Walter</title>
-    <link rel="stylesheet" href="/static/estilos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Boda Marcela & Walter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/estilos.css">
 </head>
 <body>
-    <div class="tarjeta">
-        <h1>Marcela & Walter</h1>
-        <p class="frase">Nos Casamos</p>
-        <p>14 de Abril 2026 - 6:00 PM</p>
-        <p>Salón Las Flores</p>
-    
-        <form action="/confirmar" method="POST">
-            <div class="campo">
-                <label>Nombre completo:</label>
-                <input type="text" name="nombre" required>
-            </div>
-            
-            <div class="campo">
-                <label>¿Asistirás?</label>
-                <select name="asistencia" required>
-                    <option value="si">Sí, ¡no me lo pierdo!</option>
-                    <option value="no">No podré asistir</option>
-                </select>
-            </div>
-            
-            <div class="campo">
-                <label>Total de Personas que Asistiran:</label>
-                <input type="number" name="acompanantes" min="0" value="0">
-            </div>
-            
-            <button type="submit" class="boton-confirmar">Confirmar asistencia</button>
-        </form>
-    </div>
+  <!-- Decoraciones (se mantienen igual) -->
+  <div class="decoracion decoracion1"></div>
+  <div class="decoracion decoracion2"></div>
+  <div class="decoracion decoracion3"></div>
+  <div class="decoracion decoracion4"></div>
+  <div class="decoracion decoracion5"></div>
+  <div class="linea linea1"></div>
+  <div class="linea linea2"></div>
+  <div class="linea linea3"></div>
+  <div class="linea linea4"></div>
+
+  <!-- Tarjeta -->
+  <div class="tarjeta">
+    <h1>Marcela & Walter</h1>
+    <p class="frase">Nos Casamos</p>
+    <p class="info">🌷 17 de Abril 2026 - 6:00 PM</p>
+    <p class="info">📍 Salón Las Flores</p>
+    <form action="/confirmar" method="POST">
+      <div class="campo">
+        <label>Nombre completo:</label>
+        <input type="text" name="nombre" required>
+      </div>
+      <div class="campo">
+        <label>¿Asistirás?</label>
+        <select name="asistencia" required>
+          <option value="si">Sí, ¡no me lo pierdo!</option>
+          <option value="no">No podré asistir</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label>Total de Personas que Asistirán:</label>
+        <input type="number" name="acompanantes" min="0" value="0">
+      </div>
+      <button type="submit" class="boton-confirmar">Confirmar asistencia</button>
+    </form>
+  </div>
 </body>
 </html>
